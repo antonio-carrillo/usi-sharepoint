@@ -13,6 +13,7 @@ export * from './lib/components/controls/select-trigger-label/select-trigger-lab
 export * from './lib/components/dialogs/confirm-dialog/confirm-dialog.component';
 export * from './lib/components/dialogs/form-dialog/form-dialog.component';
 export * from './lib/components/tables/data-table/data-table.component';
+export * from './lib/components/controls/social-popover/social-popover.component';
 
 // Interfaces
 
@@ -26,6 +27,7 @@ export * from './lib/shared-lib.module';
 
 // Services
 
+export * from './lib/services/common.service';
 export * from './lib/services/forms.service';
 export * from './lib/services/message.service';
 export * from './lib/services/sharepoint-integration.service';

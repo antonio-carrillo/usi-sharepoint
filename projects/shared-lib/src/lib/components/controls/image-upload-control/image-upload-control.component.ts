@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, forwardRef, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, ControlValueAccessor, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, Validators, ControlValueAccessor } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { ImageFile } from '../../../interfaces/image-file';
 
 @Component({
   selector: 'shared-image-upload-control',
@@ -19,18 +20,22 @@ import { Subscription } from 'rxjs';
     }
   ]
 })
-export class ImageUploadControlComponent implements ControlValueAccessor, OnDestroy, OnInit {
+export class ImageUploadControlComponent implements AfterViewInit, ControlValueAccessor, OnDestroy, OnInit {
   disabled: boolean;
-  firstChange = false;
   imageGroup: FormGroup;
+  overlimit = false;
   @Input() label: string;
+  @Input() file: ImageFile;
   subscriptions: Subscription[] = [];
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private message: MessageService
   ) {
 
   }
+
+  ngAfterViewInit() { }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
@@ -79,34 +84,58 @@ export class ImageUploadControlComponent implements ControlValueAccessor, OnDest
   // Custom public methods
 
   onDelete() {
-    this.value = {
+    this.file = null;
+
+    this.imageGroup.patchValue({
       data: null,
       name: null,
       type: null
-    };
+    });
   }
 
   onFileChanged(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
 
+    if (file.size > this.maxFileSizeBytes) {
+      this.message.show(`Tamaño de imagen mayor al permitido (${this.maxFileSize}).`);
+
+      return;
+    } else if (file.type.match(/^image\/.*$/) === null) {
+      this.message.show('El archivo seleccionado no es de tipo imagen.');
+
+      return;
+    }
+
     reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.value = {
-        data: reader.result,
-        name: file.name,
-        type: file.type
-      };
-    };
+
+    var fileName = file.name;
+    var idxDot = fileName.lastIndexOf(".") + 1;
+    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    if (extFile == 'jpg' || extFile == 'jpeg' || extFile == 'png') {
+      if (file.size > 1024 * 750)
+        this.overlimit = true;
+      else {
+        this.overlimit = false;
+        reader.onload = () => {
+          this.file = {
+            data: reader.result,
+            name: file.name,
+            type: file.type
+          };
+
+          this.imageGroup.patchValue({
+            data: reader.result,
+            name: file.name,
+            type: file.type
+          });
+        }
+      }
+    } else
+      alert("Solo son permitidos los archivos con extensión jpg, jpeg y png.");
   }
 
   // Custom private methods
-
-  private imageValidator(): ValidatorFn {
-    return (group: FormGroup): ValidationErrors => {
-      return group.value.name ? null : { imageValidator: true };
-    }
-  }
 
   private setupForm() {
     this.imageGroup = this.fb.group({
@@ -118,19 +147,18 @@ export class ImageUploadControlComponent implements ControlValueAccessor, OnDest
 
   private setValidation(value: boolean) {
     if (value) {
-      this.imageGroup.setValidators(this.imageValidator());
-      this.imageGroup.markAsUntouched();
+      this.data.setValidators(Validators.required);
     } else {
-      this.imageGroup.clearValidators();
+      this.data.clearValidators();
     }
 
-    this.imageGroup.updateValueAndValidity();
+    this.data.updateValueAndValidity();
   }
 
   // Getters and setters
 
-  get name() {
-    return this.imageGroup.get('name');
+  get data() {
+    return this.imageGroup.get('data');
   }
 
   set required(value: boolean) {
@@ -142,10 +170,9 @@ export class ImageUploadControlComponent implements ControlValueAccessor, OnDest
   }
 
   set value(value) {
-    this.firstChange = true;
+    this.file = value;
     this.imageGroup.setValue(value);
     this.onChange(value);
     this.onTouched();
   }
-
 }

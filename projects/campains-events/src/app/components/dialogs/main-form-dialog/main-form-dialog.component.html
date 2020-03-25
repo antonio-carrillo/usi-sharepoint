@@ -1,5 +1,0 @@
-<shared-form-dialog (closeEvent)="onClose()"
-  [disabled]="loading || mfc?.mainForm.pristine || !mfc?.mainForm.valid"
-  [loading]="loading" (submitEvent)="onSubmit()" [title]="title">
-  <ce-main-form [data]="data"></ce-main-form>
-</shared-form-dialog>

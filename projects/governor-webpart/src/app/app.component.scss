@@ -1,0 +1,91 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+$boton-color: #f5f5f5;
+$principal-gris: #666666;
+$principal-negro: #333333;
+$principal-verde: #009a3e;
+$separador-color: #b3112a;
+
+.contenedor-gobernador {
+  color: $principal-gris;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 2em;
+
+  .titulo-general-gobernador {
+    margin-bottom: 3em;
+    h1 {
+      color: $principal-negro;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px;
+      font-weight: bold;
+      margin-top: 1em;
+    }
+    .titulo-general-separador {
+      background-color: $separador-color;
+      height: 4px;
+      width: 65px;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $principal-negro;
+  }
+}
+
+.titulos-gobernador {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.presentacion-gobernador {
+  text-align: center;
+
+  .cabeceras-gobernador {
+    margin-top: 2em;
+
+    .titulo-gobernador {
+      h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 32px;
+        font-weight: 600;
+      }
+    }
+
+    .subtitulo-gobernador {
+      h5 {
+        font-size: 18px;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .imagen-gobernador {
+    text-align: center;
+    img {
+      max-width: 690px;
+    }
+    margin-bottom: 2em;
+  }
+
+  .boton-gobernador {
+    button {
+      color: $boton-color;
+      background-color: $principal-verde;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .contenedor-enlaces-gobernador {
+    margin-bottom: 1em;
+
+    .enlace-gobernador {
+      a, a:visited, a:hover, a:active {
+        color: $principal-gris;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 3em;
+      }
+    }
+  }
+}

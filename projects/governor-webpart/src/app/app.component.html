@@ -1,0 +1,78 @@
+<div class="container contenedor-gobernador">
+  <div class="container titulo-general-gobernador">
+    <h1>Mensaje Gobernador</h1>
+    <div class="titulo-general-separador"></div>
+  </div>
+
+  <ng-container *ngIf="principal">
+    <div class="container presentacion-gobernador">
+      <!-- Imagen -->
+      <ng-container *ngIf="principal.image">
+        <div class="container" class="imagen-gobernador">
+          <img class="img-fluid" [src]="principal.image" [alt]="principal.title"/>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="principal.title || principal.description">
+        <div class="container cabeceras-gobernador">
+          <!-- Título -->
+          <ng-container *ngIf="principal.title">
+            <div class="container titulo-gobernador">
+              <h2>{{ principal.title }}</h2>
+            </div>
+          </ng-container>
+
+          <!-- Subtítulo -->
+          <ng-container *ngIf="principal.description">
+            <div class="container subtitulo-gobernador">
+              <h5>{{ principal.description }}</h5>
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+
+      <!-- Botón -->
+      <ng-container *ngIf="button.isDisplayed()">
+        <div class="container boton-gobernador">
+          <button type="button" class="btn" (click)="changeContent()">
+            <ng-container *ngIf="!button.onMessage">
+              Mensaje
+            </ng-container>
+            <ng-container *ngIf="button.onMessage">
+              Currículum
+            </ng-container>
+          </button>
+        </div>
+      </ng-container>
+
+      <!-- Enlaces -->
+      <ng-container *ngIf="someLink()">
+        <div class="contenedor-enlaces-gobernador">
+          <ng-container *ngFor="let link of principal.links;">
+            <ng-container *ngIf="link.url && link.title">
+              <div class="container enlace-gobernador">
+                <a [href]="link.url">{{ link.title }}</a>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </ng-container>
+
+    </div>
+
+    <!-- Currículum / Mensaje -->
+    <ng-container *ngIf="principal.content || principal.message">
+      <div class="container contenido-gobernador">
+        <ng-container *ngIf="!button.onMessage">
+          <div [innerHTML]="principal.content">
+          </div>
+        </ng-container>
+        <ng-container *ngIf="button.onMessage">
+          <div [innerHTML]="principal.message">
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+
+  </ng-container>
+</div>

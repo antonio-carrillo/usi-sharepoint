@@ -1,0 +1,101 @@
+<form autocomplete="off" [formGroup]="mainForm">
+  <input formControlName="id" type="hidden" />
+
+  <!-- Title -->
+  <mat-form-field>
+    <input formControlName="title" matInput maxlength="100" placeholder="Nombre completo" />
+  </mat-form-field>
+
+  <!-- Descripción (subtítulo) -->
+  <mat-form-field>
+    <input formControlName="description" matInput maxlength="100" placeholder="Subtítulo" />
+  </mat-form-field>
+
+  <!-- Enlaces -->
+  <mat-card>
+    <mat-card-title style="font-size: 18px;">
+      Enlaces
+    </mat-card-title>
+    <div fxFlexFill fxLayoutGap="10px grid">
+      <div fxFlex="50">
+        <mat-form-field>
+          <input formControlName="linkTitle1" matInput maxlength="30" placeholder="Título 1" />
+        </mat-form-field>
+      </div>
+      <div fxFlex>
+        <mat-form-field>
+          <input formControlName="linkUrl1" matInput maxlength="255" placeholder="URL 1" />
+          <mat-error>El enlace debe incluir http:// o https://</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxFlexFill fxLayoutGap="10px grid">
+      <div fxFlex="50">
+        <mat-form-field>
+          <input formControlName="linkTitle2" matInput maxlength="30" placeholder="Título 2" />
+        </mat-form-field>
+      </div>
+      <div fxFlex>
+        <mat-form-field>
+          <input formControlName="linkUrl2" matInput maxlength="255" placeholder="URL 2" />
+          <mat-error>El enlace debe incluir http:// o https://</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxFlexFill fxLayoutGap="10px grid">
+      <div fxFlex="50">
+        <mat-form-field>
+          <input formControlName="linkTitle3" matInput maxlength="30" placeholder="Título 3" />
+        </mat-form-field>
+      </div>
+      <div fxFlex>
+        <mat-form-field>
+          <input formControlName="linkUrl3" matInput maxlength="255" placeholder="URL 3" />
+          <mat-error>El enlace debe incluir http:// o https://</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card>
+
+  <!-- Imagen -->
+  <div style="margin-bottom: 2em;">
+    <shared-image-upload-control #image formControlName="image"></shared-image-upload-control>
+  </div>
+
+  <!-- Contenido  -->
+  <mat-card style="margin-bottom: 1em;">
+    <mat-card-title style="font-size: 18px;">
+      Contenido:
+    </mat-card-title>
+    <ckeditor [editor]="Editor" formControlName="content"></ckeditor>
+  </mat-card>
+
+  <!-- Mensaje  -->
+  <mat-card style="margin-bottom: 1em;">
+    <mat-card-title style="font-size: 18px;">
+      Mensaje:
+    </mat-card-title>
+    <ckeditor [editor]="EditorMensaje" formControlName="message"></ckeditor>
+  </mat-card>
+
+  <!--  -->
+  <div style="margin-bottom: 1em;">
+    <mat-checkbox formControlName="principal" (change)="updateMainController()">Mostrar este contenido en la página</mat-checkbox>
+    <br />
+    <span class="mat-error" *ngIf="maincheck">Ya hay un contenido elegido (ID {{ selected }})</span>
+  </div>
+
+  <!-- Orden -->
+  <mat-form-field>
+    <input formControlName="order" matInput placeholder="Orden *" />
+    <mat-error>
+      <ng-container *ngIf="orderCtrl.hasError('required')">Este campo es obligatorio</ng-container>
+      <ng-container *ngIf="orderCtrl.hasError('pattern')">Valor numérico inválido</ng-container>
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Keywords -->
+  <shared-keyword-control formControlName="keywords"></shared-keyword-control>
+</form>

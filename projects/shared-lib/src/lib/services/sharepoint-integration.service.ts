@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ReadData } from '../interfaces/read-data';
@@ -10,6 +10,7 @@ export class SharepointIntegrationService {
   private listApiPath = '/_api/web/lists';
 
   constructor(
+    @Inject('env') private env,
     private http: HttpClient
   ) { }
 
@@ -38,7 +39,9 @@ export class SharepointIntegrationService {
 
   delete(listName: string, id: number, formDigest: string) {
     const config = this.createConfig(formDigest, 'delete');
-    const url = `${this.listApiPath}/getbytitle('${listName}')/items(${id})`;
+    let url = `${this.listApiPath}/getbytitle('${listName}')/items(${id})`;
+
+    url = this.prefixUrl(url);
 
     return this.http.delete(url, config);
   }
@@ -49,23 +52,30 @@ export class SharepointIntegrationService {
         accept: 'application/json;odata=verbose'
       })
     };
+    let url = '/_api/contextinfo';
 
-    return this.http.post('/_api/contextinfo', options)
+    url = this.prefixUrl(url);
+
+    return this.http.post(url, options)
       .pipe(
         map((response: any) => response.FormDigestValue)
       );
   }
 
   read(listName: string, data?: ReadData, id?: number) {
-    const url = this.getQuery(listName, data, id);
+    let url = this.getQuery(listName, data, id);
+
+    url = this.prefixUrl(url);
 
     return this.http.get(url);
   }
 
   save(listName: string, data: any, formDigest: string) {
     const isNew = !data.Id;
-    const url = `${this.listApiPath}/getbytitle('${listName}')/items` + (isNew ? '' : `(${data.Id})`);
+    let url = `${this.listApiPath}/getbytitle('${listName}')/items` + (isNew ? '' : `(${data.Id})`);
     const config = this.createConfig(formDigest, isNew ? null : 'edit');
+
+    url = this.prefixUrl(url);
 
     return this.http.post(url, data, config);
   }
@@ -101,5 +111,9 @@ export class SharepointIntegrationService {
     }
 
     return url + config.join('&');
+  }
+
+  private prefixUrl(url: string): string {
+    return this.env.sharepoint.prefix ? `${this.env.sharepoint.prefix}/${url}` : url;
   }
 }

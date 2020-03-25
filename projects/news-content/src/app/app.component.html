@@ -1,0 +1,85 @@
+<div class="container ncw-all">
+  <ng-container *ngIf="content">
+    <!-- Fecha --> <!-- NOTE: Obligatorio -->
+    <div class="ncw-date">
+      {{ neverNull(content.date) }}
+    </div>
+
+    <!-- Título --> <!-- NOTE: Obligatorio -->
+    <div class="ncw-main-title">
+      <h1>{{ neverNull(content.title) }}</h1>
+      <div class="ncw-main-title-separator"></div>
+    </div>
+
+    <!-- Imagen --> <!-- NOTE: Obligatorio -->
+    <div class="ncw-image">
+      <img class="img-fluid" [src]="neverNull(content.image)">
+    </div>
+
+    <!-- Share -->
+    <div class="ncw-share">
+      <div class="ncw-share-container">
+        <div class="ui-share-new">
+          <div class="ui-share-icon">
+            <i class="material-icons icon-new icon-share">share</i>
+          </div>
+          <div class="ui-share-link">
+            <shared-social-popover
+              url="{{ currentUrl }}"
+              mensajeAsunto="{{ content.title }}"
+              mensajeContenido="{{ content.title }}:"
+              twitterText="{{ content.title }}:">
+            </shared-social-popover>
+          </div>
+        </div>
+        <!-- <button class="ncw-btn-share" type="button"><i class="material-icons">share</i> Compartir</button> -->
+      </div>
+    </div>
+
+    <!-- Puntos importantes --> <!-- NOTE: Opcional -->
+    <div class="ncw-points"> <!-- TODO: font weight -->
+      <ng-container *ngFor="let point of content.points">
+        <ul>
+          <ng-container *ngIf="point">
+            <li>{{ point }}</li>
+          </ng-container>
+        </ul>
+      </ng-container>
+    </div>
+
+    <!-- Video -->
+    <ng-container *ngIf="content.video">
+      <div [innerHTML]="htmlData" class="row ncw-video"></div>
+    </ng-container>
+
+    <!-- Noticia -->
+    <div class="ncw-news" [innerHTML]="neverNull(content.news)"></div>
+
+    <!-- Galería -->
+    <ng-container *ngIf="!whitoutImages">
+      <div class="container ncw-gallery">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+          <ng-container *ngFor="let image of neverNull(content.images, [''])">
+            <ng-container *ngIf="image">
+              <div class="col mx-auto d-block">
+                <img [src]="image">
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container> <!-- if content -->
+
+  <ng-container *ngIf="!content">
+    <div>
+      <h3>Noticia no encontrada</h3>
+    </div>
+  </ng-container>
+
+  <!-- Navegador -->
+  <div class="ncw-navegacion">
+    <a href="/SitePages/Web Parts/Contenido Noticias.aspx/{{ pages.previous }}" title="Noticia anterior" class="ncw-flecha-izquierda"></a>
+    <a href="/SitePages/Web Parts/Contenido Noticias.aspx/{{ pages.next }}" title="Noticia siguiente" class="ncw-flecha-derecha"></a>
+  </div>
+</div>

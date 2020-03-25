@@ -1,0 +1,48 @@
+$fondo-rsw: #E6E6E6;
+$boton-color: #f5f5f5;
+$principal-gris: #666666;
+$principal-negro: #333333;
+$principal-verde: #009a3e;
+$separador-color: #b3112a;
+
+.rsw-content {
+  color: $principal-gris;
+  background-color: $fondo-rsw;
+  font-family: 'Montserrat', sans-serif;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $principal-negro;
+  }
+
+  .rsw-title {
+    h1 {
+      color: $principal-negro;
+      font-size: 36px;
+      font-weight: bold;
+      margin-top: 1em;
+    }
+    .rsw-title-separator {
+      background-color: $separador-color;
+      height: 4px;
+      width: 65px;
+    }
+  }
+
+  .rsw-networks {
+    .rsw-nw {
+      img.nw-header {
+        width: 100%;
+      }
+      img.nw-fb-header {
+        width: 100%;
+        max-width: 530px
+      }
+      .rsw-fb-iframe {
+        iframe {
+          width: 100%;
+          max-width: 530px;
+        }
+      }
+    }
+  }
+}

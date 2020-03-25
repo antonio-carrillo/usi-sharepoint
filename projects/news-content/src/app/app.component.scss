@@ -1,0 +1,117 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+$font-montserrat: 'Montserrat', sans-serif;
+
+$light: 300;
+$regular: 400;
+$semibold: 600;
+$bold: 700;
+
+$principal-gris: #6f6f6f;
+$principal-negro: #333333;
+$principal-verde: #009a3e;
+$separator-color: #b3112a;
+
+$general-margin: 10px 0 10px 0;
+$text-padding: 10px 0 10px 0;
+
+.ncw-all {
+  font-family: $font-montserrat;
+  font-size: 18px;
+  color: $principal-gris;
+  margin-bottom: 2em;
+  width: 80%;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $principal-negro;
+  }
+
+  .ncw-date {
+    padding: $text-padding;
+  }
+
+  .ncw-main-title {
+    margin: $general-margin;
+    padding: 10px 10px 10px 10px;
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px;
+      font-weight: $semibold;
+    }
+    .ncw-main-title-separator {
+      background-color: $separator-color;
+      height: 4px;
+      width: 65px;
+    }
+  }
+
+  .ncw-image {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .ncw-point {
+    font-weight: $semibold;
+  }
+
+  .ncw-share {
+    text-align: center;
+    color: $principal-verde;
+    .ncw-share-container {
+      display: inline-block;
+      // button.ncw-btn-share {
+      //   border: none;
+      //   background: none;
+      //   font-size: 16px;
+      //   color: $principal-verde;
+      //   i.material-icons {
+      //     font-size: 12px;
+      //   }
+      // }
+    }
+  }
+
+  .ncw-description {
+    margin: $general-margin;
+  }
+
+  .ncw-news {
+    margin: $general-margin;
+    padding: 5px;
+  }
+
+  .ncw-gallery {
+    margin: $general-margin;
+    .row {
+      padding: 0.5em;
+      .col {
+        text-align: center;
+        width: 200px;
+        height: 180px;
+        margin: 0;
+        padding: 0;
+        img {
+          margin: auto;
+          width: 160px;
+          max-height: 170px;
+        }
+      }
+    }
+  }
+
+  .ncw-navegacion {
+    text-align: center;
+    a.ncw-flecha-izquierda {
+      background: url("/SiteAssets/Recursos/img/Flecha-Izquierda.png") no-repeat;
+      display: inline-block;
+      width: 44px;
+      height: 44px;
+    }
+    a.ncw-flecha-derecha {
+      background: url("/SiteAssets/Recursos/img/Flecha-Derecha.png") no-repeat;
+      display: inline-block;
+      width: 44px;
+      height: 44px;
+    }
+  }
+}

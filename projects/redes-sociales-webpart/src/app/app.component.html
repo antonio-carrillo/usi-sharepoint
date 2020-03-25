@@ -1,0 +1,52 @@
+<div class="container rsw-content">
+  <div class="container rsw-title">
+    <h1>Redes sociales</h1>
+    <div class="rsw-title-separator"></div>
+  </div>
+
+  <ng-container *ngIf="social">
+    <div class="row row-cols-1 row-cols-md-2 rsw-networks">
+      <!-- Facebook 0 -->
+      <div class="col mx-auto d-block rsw-nw rsw-nw-fb">
+        <ng-container *ngIf="facebooks && facebooks[0]">
+          <img class="nw-fb-header" src="/SiteAssets/Recursos/img/FACEBOOK.png">
+          <ng-container *ngIf="loadEnded">
+            <div class="rsw-fb-iframe" [innerHTML]="facebooks[0].fbUrl">
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+      <!-- Twitter 0 -->
+      <div class="col mx-auto d-block rsw-nw rsw-nw-tw">
+        <ng-container *ngIf="twitters && twitters[0]">
+          <img class="nw-header" src="/SiteAssets/Recursos/img/TWITTER.png">
+          <a class="twitter-timeline" data-height="500" data-theme="light" [href]="twitters[0].twUrl">{{ twitters[0].title }}</a>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 rsw-networks">
+      <!-- Facebook 1 -->
+      <div class="col mx-auto d-block rsw-nw rsw-nw-fb">
+        <ng-container *ngIf="facebooks && facebooks[1]">
+          <img class="nw-fb-header" src="/SiteAssets/Recursos/img/FACEBOOK.png">
+          <ng-container *ngIf="loadEnded">
+            <div class="rsw-fb-iframe" [innerHTML]="facebooks[1].fbUrl">
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+      <!-- Twitter 1 -->
+      <div class="col mx-auto d-block rsw-nw rsw-nw-tw">
+        <ng-container *ngIf="twitters && twitters[1]">
+          <img class="nw-header" src="/SiteAssets/Recursos/img/TWITTER.png">
+          <a class="twitter-timeline" data-height="500" data-theme="light" [href]="twitters[1].twUrl">{{ twitters[1].title }}</a>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-container *ngIf="loadEnded">
+  <script>twttr.widgets.load();</script>
+</ng-container>
