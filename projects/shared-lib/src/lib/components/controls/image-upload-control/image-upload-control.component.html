@@ -5,27 +5,18 @@
   <strong>{{ label }}</strong>
   <br />
   <br />
-
-  <ng-container *ngIf="!this.name?.value">
-    <input accept="image/*" (change)="onFileChanged($event)" #fileTnput style="display: none;" type="file" />
-
-    <button (click)="fileTnput.click()" mat-raised-button *ngIf="!this.name?.value" type="button">
-      Seleccionar imagen
-    </button>
-  </ng-container>
-
-
-  <span>{{ this.name?.value }}</span>
-
-  <button (click)="onDelete()" mat-icon-button matTooltip="Eliminar" *ngIf="this.name?.value" type="button">
+  <input accept="image/png, image/jpeg" (change)="onFileChanged($event)" #fileTnput style="display: none;" type="file" />
+  <button type="button" (click)="fileTnput.click()" mat-raised-button *ngIf="!file">
+    Seleccionar imagen
+  </button>
+  <span>{{ file?.name }}</span>
+  <button type="button" (click)="onDelete()" mat-icon-button matTooltip="Eliminar" *ngIf="file">
     <mat-icon>delete</mat-icon>
   </button>
-
-  <div *ngIf="!this.name?.value">
-    <small>Tamaño máximo: {{ maxFileSize }}</small>
-  </div>
-
-  <mat-error *ngIf="firstChange && imageGroup.hasError('imageValidator')">
+  <span *ngIf="overlimit">
+    Imagen superior a límite de 750 KB
+  </span>
+  <mat-error *ngIf="data.dirty || data.hasError('required')">
     Campo obligatorio
   </mat-error>
 </section>

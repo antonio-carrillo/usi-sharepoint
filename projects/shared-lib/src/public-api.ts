@@ -13,6 +13,7 @@ export * from './lib/components/controls/select-trigger-label/select-trigger-lab
 export * from './lib/components/dialogs/confirm-dialog/confirm-dialog.component';
 export * from './lib/components/dialogs/form-dialog/form-dialog.component';
 export * from './lib/components/tables/data-table/data-table.component';
+export * from './lib/components/controls/social-popover/social-popover.component';
 
 // Interfaces
 
