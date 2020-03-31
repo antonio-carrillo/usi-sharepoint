@@ -1,0 +1,7 @@
+<ul class="years-container">
+  <li *ngFor="let item of years">
+    <a href="{{ item.link }}" [ngClass]="{ 'active': item.year === year }" target="_self">
+      {{ item.year }}
+    </a>
+  </li>
+</ul>

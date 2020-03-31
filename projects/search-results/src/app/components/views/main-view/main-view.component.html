@@ -1,0 +1,25 @@
+<shared-progress-bar *ngIf="loading"></shared-progress-bar>
+
+<div class="results-container">
+  <mat-card class="mat-elevation-z8" *ngFor="let item of data">
+    <mat-card-content>
+      <h3>
+        <a href="{{ item.url }}" target="_self">
+          {{ item.title }}
+        </a>
+      </h3>
+      <small>
+        Publicado en {{ item.created | date : 'dd-MM-yyyy hh:mm a' }}
+      </small>
+      <br />
+      <br />
+      <mat-chip-list>
+        <mat-chip>
+          {{ item.label }}
+        </mat-chip>
+      </mat-chip-list>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<h2 *ngIf="data.length === 0">No se encontraron resultados.</h2>

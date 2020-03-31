@@ -1,0 +1,83 @@
+<form autocomplete="off" [formGroup]="mainForm">
+  <input formControlName="id" type="hidden" />
+
+  <!-- TODO - Set maxlengths -->
+
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
+    <div fxFlex>
+      <mat-form-field>
+        <input formControlName="ownerName" matInput maxlength="40" placeholder="Nombre del Titular" />
+      </mat-form-field>
+    </div>
+    <div fxFlex>
+      <mat-form-field>
+        <input formControlName="url" matInput maxlength="250" placeholder="URL *" />
+        <mat-error>
+          <ng-container *ngIf="url.hasError('required')">
+            Este campo es obligatorio
+          </ng-container>
+          <ng-container *ngIf="url.hasError('pattern')">
+            URL inválida
+          </ng-container>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
+    <div fxFlex>
+      <mat-form-field>
+        <input formControlName="dependencyTitle" matInput maxlength="86" placeholder="Título de la Dependencia" />
+      </mat-form-field>
+    </div>
+    <div fxFlex>
+      <mat-form-field>
+        <input formControlName="position" matInput maxlength="86" placeholder="Cargo" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <mat-form-field>
+    <textarea formControlName="curriculum" matInput maxlength="600" placeholder="Currículum" rows="1"></textarea>
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%">
+    <div fxFlex>
+      <shared-image-upload-control #image formControlName="image" label="Imagen *"></shared-image-upload-control>
+    </div>
+    <div fxFlex>
+      <mat-form-field>
+        <mat-select formControlName="type" placeholder="Tipo de Gabinete *">
+          <mat-option value="Ampliado">Ampliado</mat-option>
+          <mat-option value="Legal">Legal</mat-option>
+        </mat-select>
+        <mat-error>
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <br />
+
+  <shared-keyword-control formControlName="keywords"></shared-keyword-control>
+
+  <ng-container formArrayName="names">
+    <div [formGroupName]="i" fxLayout="row" fxLayout.xs="column" fxLayoutGap="1%" *ngFor="let item of names.controls; let i = index">
+      <div fxFlex>
+        <mat-form-field>
+          <input formControlName="name" matInput maxlength="100" placeholder="Nombre" />
+        </mat-form-field>
+      </div>
+      <div fxFlex>
+        <mat-form-field>
+          <input formControlName="link" matInput maxlength="256" placeholder="Enlace" />
+          <mat-error>
+            Enlace inválido
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </ng-container>
+
+</form>

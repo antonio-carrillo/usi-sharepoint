@@ -48,32 +48,32 @@
         }
       }
     },
-    "governor": {
+    "cabinet": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/governor",
-      "sourceRoot": "projects/governor/src",
-      "prefix": "ce",
+      "root": "projects/cabinet",
+      "sourceRoot": "projects/cabinet/src",
+      "prefix": "cab",
       "architect": {
         "build": {
-          "builder": "ngx-build-plus:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/governor",
-            "index": "projects/governor/src/index.html",
-            "main": "projects/governor/src/main.ts",
-            "polyfills": "projects/governor/src/polyfills.ts",
-            "tsConfig": "projects/governor/tsconfig.app.json",
+            "outputPath": "dist/cabinet",
+            "index": "projects/cabinet/src/index.html",
+            "main": "projects/cabinet/src/main.ts",
+            "polyfills": "projects/cabinet/src/polyfills.ts",
+            "tsConfig": "projects/cabinet/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/governor/src/favicon.ico",
-              "projects/governor/src/assets"
+              "projects/cabinet/src/favicon.ico",
+              "projects/cabinet/src/assets"
             ],
             "styles": [
-              "projects/governor/src/styles.scss"
+              "projects/cabinet/src/styles.scss"
             ],
             "scripts": []
           },
@@ -81,8 +81,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/governor/src/environments/environment.ts",
-                  "with": "projects/governor/src/environments/environment.prod.ts"
+                  "replace": "projects/cabinet/src/environments/environment.ts",
+                  "with": "projects/cabinet/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -109,35 +109,35 @@
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "governor:build"
+            "browserTarget": "cabinet:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "governor:build:production"
+              "browserTarget": "cabinet:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "governor:build"
+            "browserTarget": "cabinet:build"
           }
         },
         "test": {
-          "builder": "ngx-build-plus:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/governor/src/test.ts",
-            "polyfills": "projects/governor/src/polyfills.ts",
-            "tsConfig": "projects/governor/tsconfig.spec.json",
-            "karmaConfig": "projects/governor/karma.conf.js",
+            "main": "projects/cabinet/src/test.ts",
+            "polyfills": "projects/cabinet/src/polyfills.ts",
+            "tsConfig": "projects/cabinet/tsconfig.spec.json",
+            "karmaConfig": "projects/cabinet/karma.conf.js",
             "assets": [
-              "projects/governor/src/favicon.ico",
-              "projects/governor/src/assets"
+              "projects/cabinet/src/favicon.ico",
+              "projects/cabinet/src/assets"
             ],
             "styles": [
-              "projects/governor/src/styles.scss"
+              "projects/cabinet/src/styles.scss"
             ],
             "scripts": []
           }
@@ -146,9 +146,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/governor/tsconfig.app.json",
-              "projects/governor/tsconfig.spec.json",
-              "projects/governor/e2e/tsconfig.json"
+              "projects/cabinet/tsconfig.app.json",
+              "projects/cabinet/tsconfig.spec.json",
+              "projects/cabinet/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -158,43 +158,43 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/governor/e2e/protractor.conf.js",
-            "devServerTarget": "governor:serve"
+            "protractorConfig": "projects/cabinet/e2e/protractor.conf.js",
+            "devServerTarget": "cabinet:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "governor:serve:production"
+              "devServerTarget": "cabinet:serve:production"
             }
           }
         }
       }
     },
-    "governor-webpart": {
+    "social-networks": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/governor-webpart",
-      "sourceRoot": "projects/governor-webpart/src",
-      "prefix": "gw",
+      "root": "projects/social-networks",
+      "sourceRoot": "projects/social-networks/src",
+      "prefix": "sn",
       "architect": {
         "build": {
-          "builder": "ngx-build-plus:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/governor-webpart",
-            "index": "projects/governor-webpart/src/index.html",
-            "main": "projects/governor-webpart/src/main.ts",
-            "polyfills": "projects/governor-webpart/src/polyfills.ts",
-            "tsConfig": "projects/governor-webpart/tsconfig.app.json",
+            "outputPath": "dist/social-networks",
+            "index": "projects/social-networks/src/index.html",
+            "main": "projects/social-networks/src/main.ts",
+            "polyfills": "projects/social-networks/src/polyfills.ts",
+            "tsConfig": "projects/social-networks/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/governor-webpart/src/favicon.ico",
-              "projects/governor-webpart/src/assets"
+              "projects/social-networks/src/favicon.ico",
+              "projects/social-networks/src/assets"
             ],
             "styles": [
-              "projects/governor-webpart/src/styles.scss"
+              "projects/social-networks/src/styles.scss"
             ],
             "scripts": []
           },
@@ -202,8 +202,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/governor-webpart/src/environments/environment.ts",
-                  "with": "projects/governor-webpart/src/environments/environment.prod.ts"
+                  "replace": "projects/social-networks/src/environments/environment.ts",
+                  "with": "projects/social-networks/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -230,35 +230,35 @@
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "governor-webpart:build"
+            "browserTarget": "social-networks:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "governor-webpart:build:production"
+              "browserTarget": "social-networks:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "governor-webpart:build"
+            "browserTarget": "social-networks:build"
           }
         },
         "test": {
-          "builder": "ngx-build-plus:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/governor-webpart/src/test.ts",
-            "polyfills": "projects/governor-webpart/src/polyfills.ts",
-            "tsConfig": "projects/governor-webpart/tsconfig.spec.json",
-            "karmaConfig": "projects/governor-webpart/karma.conf.js",
+            "main": "projects/social-networks/src/test.ts",
+            "polyfills": "projects/social-networks/src/polyfills.ts",
+            "tsConfig": "projects/social-networks/tsconfig.spec.json",
+            "karmaConfig": "projects/social-networks/karma.conf.js",
             "assets": [
-              "projects/governor-webpart/src/favicon.ico",
-              "projects/governor-webpart/src/assets"
+              "projects/social-networks/src/favicon.ico",
+              "projects/social-networks/src/assets"
             ],
             "styles": [
-              "projects/governor-webpart/src/styles.scss"
+              "projects/social-networks/src/styles.scss"
             ],
             "scripts": []
           }
@@ -267,9 +267,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/governor-webpart/tsconfig.app.json",
-              "projects/governor-webpart/tsconfig.spec.json",
-              "projects/governor-webpart/e2e/tsconfig.json"
+              "projects/social-networks/tsconfig.app.json",
+              "projects/social-networks/tsconfig.spec.json",
+              "projects/social-networks/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -279,44 +279,43 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/governor-webpart/e2e/protractor.conf.js",
-            "devServerTarget": "governor-webpart:serve"
+            "protractorConfig": "projects/social-networks/e2e/protractor.conf.js",
+            "devServerTarget": "social-networks:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "governor-webpart:serve:production"
+              "devServerTarget": "social-networks:serve:production"
             }
           }
         }
       }
     },
-    "news-content": {
+    "search-bar": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/news-content",
-      "sourceRoot": "projects/news-content/src",
-      "prefix": "ncw",
+      "root": "projects/search-bar",
+      "sourceRoot": "projects/search-bar/src",
+      "prefix": "sb",
       "architect": {
         "build": {
-          "builder": "ngx-build-plus:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/news-content",
-            "index": "projects/news-content/src/index.html",
-            "main": "projects/news-content/src/main.ts",
-            "polyfills": "projects/news-content/src/polyfills.ts",
-            "tsConfig": "projects/news-content/tsconfig.app.json",
+            "outputPath": "dist/search-bar",
+            "index": "projects/search-bar/src/index.html",
+            "main": "projects/search-bar/src/main.ts",
+            "polyfills": "projects/search-bar/src/polyfills.ts",
+            "tsConfig": "projects/search-bar/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/news-content/src/favicon.ico",
-              "projects/news-content/src/assets"
+              "projects/search-bar/src/favicon.ico",
+              "projects/search-bar/src/assets"
             ],
             "styles": [
-              "projects/news-content/src/styles.scss",
-              "node_modules/font-awesome/css/font-awesome.css"
+              "projects/search-bar/src/styles.scss"
             ],
             "scripts": []
           },
@@ -324,8 +323,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/news-content/src/environments/environment.ts",
-                  "with": "projects/news-content/src/environments/environment.prod.ts"
+                  "replace": "projects/search-bar/src/environments/environment.ts",
+                  "with": "projects/search-bar/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -352,35 +351,35 @@
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "news-content:build"
+            "browserTarget": "search-bar:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "news-content:build:production"
+              "browserTarget": "search-bar:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "news-content:build"
+            "browserTarget": "search-bar:build"
           }
         },
         "test": {
-          "builder": "ngx-build-plus:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/news-content/src/test.ts",
-            "polyfills": "projects/news-content/src/polyfills.ts",
-            "tsConfig": "projects/news-content/tsconfig.spec.json",
-            "karmaConfig": "projects/news-content/karma.conf.js",
+            "main": "projects/search-bar/src/test.ts",
+            "polyfills": "projects/search-bar/src/polyfills.ts",
+            "tsConfig": "projects/search-bar/tsconfig.spec.json",
+            "karmaConfig": "projects/search-bar/karma.conf.js",
             "assets": [
-              "projects/news-content/src/favicon.ico",
-              "projects/news-content/src/assets"
+              "projects/search-bar/src/favicon.ico",
+              "projects/search-bar/src/assets"
             ],
             "styles": [
-              "projects/news-content/src/styles.scss"
+              "projects/search-bar/src/styles.scss"
             ],
             "scripts": []
           }
@@ -389,9 +388,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/news-content/tsconfig.app.json",
-              "projects/news-content/tsconfig.spec.json",
-              "projects/news-content/e2e/tsconfig.json"
+              "projects/search-bar/tsconfig.app.json",
+              "projects/search-bar/tsconfig.spec.json",
+              "projects/search-bar/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -401,43 +400,43 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/news-content/e2e/protractor.conf.js",
-            "devServerTarget": "news-content:serve"
+            "protractorConfig": "projects/search-bar/e2e/protractor.conf.js",
+            "devServerTarget": "search-bar:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "news-content:serve:production"
+              "devServerTarget": "search-bar:serve:production"
             }
           }
         }
       }
     },
-    "redes-sociales-webpart": {
+    "search-results": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/redes-sociales-webpart",
-      "sourceRoot": "projects/redes-sociales-webpart/src",
-      "prefix": "rsw",
+      "root": "projects/search-results",
+      "sourceRoot": "projects/search-results/src",
+      "prefix": "sr",
       "architect": {
         "build": {
-          "builder": "ngx-build-plus:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/redes-sociales-webpart",
-            "index": "projects/redes-sociales-webpart/src/index.html",
-            "main": "projects/redes-sociales-webpart/src/main.ts",
-            "polyfills": "projects/redes-sociales-webpart/src/polyfills.ts",
-            "tsConfig": "projects/redes-sociales-webpart/tsconfig.app.json",
+            "outputPath": "dist/search-results",
+            "index": "projects/search-results/src/index.html",
+            "main": "projects/search-results/src/main.ts",
+            "polyfills": "projects/search-results/src/polyfills.ts",
+            "tsConfig": "projects/search-results/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/redes-sociales-webpart/src/favicon.ico",
-              "projects/redes-sociales-webpart/src/assets"
+              "projects/search-results/src/favicon.ico",
+              "projects/search-results/src/assets"
             ],
             "styles": [
-              "projects/redes-sociales-webpart/src/styles.scss"
+              "projects/search-results/src/styles.scss"
             ],
             "scripts": []
           },
@@ -445,8 +444,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/redes-sociales-webpart/src/environments/environment.ts",
-                  "with": "projects/redes-sociales-webpart/src/environments/environment.prod.ts"
+                  "replace": "projects/search-results/src/environments/environment.ts",
+                  "with": "projects/search-results/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -473,35 +472,35 @@
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "redes-sociales-webpart:build"
+            "browserTarget": "search-results:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "redes-sociales-webpart:build:production"
+              "browserTarget": "search-results:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "redes-sociales-webpart:build"
+            "browserTarget": "search-results:build"
           }
         },
         "test": {
-          "builder": "ngx-build-plus:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/redes-sociales-webpart/src/test.ts",
-            "polyfills": "projects/redes-sociales-webpart/src/polyfills.ts",
-            "tsConfig": "projects/redes-sociales-webpart/tsconfig.spec.json",
-            "karmaConfig": "projects/redes-sociales-webpart/karma.conf.js",
+            "main": "projects/search-results/src/test.ts",
+            "polyfills": "projects/search-results/src/polyfills.ts",
+            "tsConfig": "projects/search-results/tsconfig.spec.json",
+            "karmaConfig": "projects/search-results/karma.conf.js",
             "assets": [
-              "projects/redes-sociales-webpart/src/favicon.ico",
-              "projects/redes-sociales-webpart/src/assets"
+              "projects/search-results/src/favicon.ico",
+              "projects/search-results/src/assets"
             ],
             "styles": [
-              "projects/redes-sociales-webpart/src/styles.scss"
+              "projects/search-results/src/styles.scss"
             ],
             "scripts": []
           }
@@ -510,9 +509,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/redes-sociales-webpart/tsconfig.app.json",
-              "projects/redes-sociales-webpart/tsconfig.spec.json",
-              "projects/redes-sociales-webpart/e2e/tsconfig.json"
+              "projects/search-results/tsconfig.app.json",
+              "projects/search-results/tsconfig.spec.json",
+              "projects/search-results/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -522,12 +521,12 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/redes-sociales-webpart/e2e/protractor.conf.js",
-            "devServerTarget": "redes-sociales-webpart:serve"
+            "protractorConfig": "projects/search-results/e2e/protractor.conf.js",
+            "devServerTarget": "search-results:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "redes-sociales-webpart:serve:production"
+              "devServerTarget": "search-results:serve:production"
             }
           }
         }

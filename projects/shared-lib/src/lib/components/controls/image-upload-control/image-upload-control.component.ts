@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, forwardRef, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, Validators, ControlValueAccessor } from '@angular/forms';
+import { Component, Input, OnInit, forwardRef, OnDestroy, AfterViewInit } from '@angular/core';
+import { FormGroup, FormBuilder, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, ControlValueAccessor, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { ImageFile } from '../../../interfaces/image-file';
+import { MessageService } from '../../../services/message.service';
 
 @Component({
   selector: 'shared-image-upload-control',
@@ -22,10 +22,11 @@ import { ImageFile } from '../../../interfaces/image-file';
 })
 export class ImageUploadControlComponent implements AfterViewInit, ControlValueAccessor, OnDestroy, OnInit {
   disabled: boolean;
+  firstChange = false;
   imageGroup: FormGroup;
-  overlimit = false;
   @Input() label: string;
-  @Input() file: ImageFile;
+  @Input() maxFileSize = '750KB';
+  private maxFileSizeBytes: number;
   subscriptions: Subscription[] = [];
 
   constructor(
@@ -35,7 +36,9 @@ export class ImageUploadControlComponent implements AfterViewInit, ControlValueA
 
   }
 
-  ngAfterViewInit() { }
+  ngAfterViewInit() {
+    this.maxFileSizeBytes = this.calculateSize(this.maxFileSize);
+  }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
@@ -84,13 +87,11 @@ export class ImageUploadControlComponent implements AfterViewInit, ControlValueA
   // Custom public methods
 
   onDelete() {
-    this.file = null;
-
-    this.imageGroup.patchValue({
+    this.value = {
       data: null,
       name: null,
       type: null
-    });
+    };
   }
 
   onFileChanged(event) {
@@ -108,34 +109,41 @@ export class ImageUploadControlComponent implements AfterViewInit, ControlValueA
     }
 
     reader.readAsDataURL(file);
-
-    var fileName = file.name;
-    var idxDot = fileName.lastIndexOf(".") + 1;
-    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-    if (extFile == 'jpg' || extFile == 'jpeg' || extFile == 'png') {
-      if (file.size > 1024 * 750)
-        this.overlimit = true;
-      else {
-        this.overlimit = false;
-        reader.onload = () => {
-          this.file = {
-            data: reader.result,
-            name: file.name,
-            type: file.type
-          };
-
-          this.imageGroup.patchValue({
-            data: reader.result,
-            name: file.name,
-            type: file.type
-          });
-        }
-      }
-    } else
-      alert("Solo son permitidos los archivos con extensión jpg, jpeg y png.");
+    reader.onload = () => {
+      this.value = {
+        data: reader.result,
+        name: file.name,
+        type: file.type
+      };
+    };
   }
 
   // Custom private methods
+
+  private calculateSize(value: string) {
+    value = value.replace(/\s/g, '');
+
+    const size = value.match(/^\d+(\.\d+)?/)[0];
+    const unit = value.substr(size.length).toUpperCase();
+    let sizeValue = parseFloat(size);
+
+    switch (unit) {
+      case 'KB':
+        sizeValue *= 1000;
+        break;
+      case 'MB':
+        sizeValue *= 1000000;
+        break;
+    }
+
+    return sizeValue;
+  }
+
+  private imageValidator(): ValidatorFn {
+    return (group: FormGroup): ValidationErrors => {
+      return group.value.name ? null : { imageValidator: true };
+    }
+  }
 
   private setupForm() {
     this.imageGroup = this.fb.group({
@@ -147,18 +155,19 @@ export class ImageUploadControlComponent implements AfterViewInit, ControlValueA
 
   private setValidation(value: boolean) {
     if (value) {
-      this.data.setValidators(Validators.required);
+      this.imageGroup.setValidators(this.imageValidator());
+      this.imageGroup.markAsUntouched();
     } else {
-      this.data.clearValidators();
+      this.imageGroup.clearValidators();
     }
 
-    this.data.updateValueAndValidity();
+    this.imageGroup.updateValueAndValidity();
   }
 
   // Getters and setters
 
-  get data() {
-    return this.imageGroup.get('data');
+  get name() {
+    return this.imageGroup.get('name');
   }
 
   set required(value: boolean) {
@@ -170,9 +179,10 @@ export class ImageUploadControlComponent implements AfterViewInit, ControlValueA
   }
 
   set value(value) {
-    this.file = value;
+    this.firstChange = true;
     this.imageGroup.setValue(value);
     this.onChange(value);
     this.onTouched();
   }
+
 }

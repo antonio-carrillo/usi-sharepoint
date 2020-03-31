@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { getSpanishPaginatorIntl } from './spanish-paginator-intl';
 
 // Custom components
@@ -16,7 +15,6 @@ import { SelectTriggerLabelComponent } from './components/controls/select-trigge
 import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
 import { FormDialogComponent } from './components/dialogs/form-dialog/form-dialog.component';
 import { DataTableComponent } from './components/tables/data-table/data-table.component';
-import { SocialPopoverComponent } from './components/controls/social-popover/social-popover.component';
 
 // Material components
 
@@ -45,8 +43,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     KeywordControlComponent,
     ProgressBarComponent,
     ProgressSpinnerComponent,
-    SelectTriggerLabelComponent,
-    SocialPopoverComponent
+    SelectTriggerLabelComponent
   ],
   entryComponents: [
     ConfirmDialogComponent
@@ -59,8 +56,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     KeywordControlComponent,
     ProgressBarComponent,
     ProgressSpinnerComponent,
-    SelectTriggerLabelComponent,
-    SocialPopoverComponent
+    SelectTriggerLabelComponent
   ],
   imports: [
     CommonModule,
@@ -80,8 +76,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSortModule,
     MatTableModule,
     MatTooltipModule,
-    ReactiveFormsModule,
-    NgbModule
+    ReactiveFormsModule
   ],
   providers: [
     {

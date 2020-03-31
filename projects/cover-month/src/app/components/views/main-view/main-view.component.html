@@ -1,0 +1,23 @@
+<h2>{{ year }} - {{ month }}</h2>
+<br />
+<div class="covers-container">
+  <div class="cover" *ngFor="let item of covers">
+    <a href="{{ item.url }}" target="_self">
+      <mat-card class="mat-elevation-z8">
+        <img alt="{{ item.title }}" mat-card-image src="{{ item.image }}" style="width: 100%;" />
+        <mat-card-header>
+          <mat-card-title style="text-align: center;">
+            {{ item.title }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{ item.created | date : 'dd-MM-yyyy' }}
+          </mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </a>
+  </div>
+</div>
+<div *ngIf="!loading && covers.length === 0">
+  <strong>Sin resultados.</strong>
+</div>
+<shared-progress-bar *ngIf="loading"></shared-progress-bar>

@@ -1,6 +1,5 @@
-python
-rts = {
-    output: {
-        jsonpFunction: 'governor-webpart'
-    }
+module.exports = {
+  output: {
+    jsonpFunction: 'governor-webpart'
+  }
 }

@@ -1,0 +1,15 @@
+.results-container {
+  .mat-card {
+    margin-bottom: 20px;
+
+    .mat-card-content {
+      h3 {
+        a {
+          &:visited {
+            color: purple;
+          }
+        }
+      }
+    }
+  }
+}
