@@ -66,8 +66,7 @@ export class MainFormComponent implements OnInit {
       CV: this.checkNull(values.content),
       Mensaje: this.checkNull(values.message),
       Orden: Number(this.checkNull(values.order, '0')),
-      PalabrasClave: values.keywords ? values.keywords.keywords : '',
-      Principal: this.checkNull(values.principal, false)
+      PalabrasClave: values.keywords ? values.keywords.keywords : ''
     };
 
     if (values.id) {
